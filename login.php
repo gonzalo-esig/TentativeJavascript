@@ -1,5 +1,4 @@
 
-<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <html>
   <head>
     <?php
@@ -8,48 +7,6 @@
     ?>
   </head>
   <body>
-    <script language="Javascript">
-    function AfficherEntreprise(x)
-    {
-      divinfoclient = document.getElementById('client');
-      divinfoentreprise = document.getElementById('entreprise');
-    if (x.checked) {
-
-        divinfoclient.style.display = 'none';
-        divinfoentreprise.style.display = 'initial';
-    }
-    }
-    function AfficherClient(x)
-    {
-
-      divinfoclient = document.getElementById('client');
-      divinfoentreprise = document.getElementById('entreprise');
-    if (x.checked) {
-
-          divinfoentreprise.style.display = 'none';
-          divinfoclient.style.display = 'initial';
-    }
-    }
-    function validation(f) {
-      if (f.mdp1.value == '' || f.mdp2.value == '') {
-        alert('Tous les champs ne sont pas remplis');
-        f.mdp1.focus();
-        return false;
-        }
-      else if (f.mdp1.value != f.mdp2.value) {
-        alert('Ce ne sont pas les mêmes mots de passe!');
-        f.mdp1.focus();
-        return false;
-        }
-      else if (f.mdp1.value == f.mdp2.value) {
-        return true;
-        }
-      else {
-        f.mdp1.focus();
-        return false;
-        }
-      }
-    </script>
     <title>C&M - Login</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -308,354 +265,308 @@
     }
 
       ?>
-    		<main role="main" class="container">
-    			<div class="row">
-    				<div class="col-md-12 blog-main">
-    					<div class="modal-dialog cascading-modal" role="document">
-    		<!--Content-->
-    		<div class="modal-content">
 
-    			<!--Modal cascading tabs-->
-    			<div class="modal-c-tabs">
+        <main role="main" class="container">
+  		<div class="row">
+  			<div class="col-md-12 blog-main">
+  				<div class="modal-dialog cascading-modal" role="document">
+  	<div class="modal-content">
+  		<div class="modal-c-tabs">
+  			<ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
+  				<li class="nav-item">
+  					<a class="nav-link active" data-toggle="tab" href="#panel1" role="tab"id="pageconnexion"><i class="fas fa-user mr-1" id="pageconnexion" ></i>Connexion</a>
+  				</li>
+  				<li class="nav-item">
+  					<a class="nav-link" data-toggle="tab" href="#panel2" role="tab" id="pageinscription"><i class="fas fa-user-plus mr-1" id="pageinscription"></i>Inscription</a>
+  				</li>
+  			</ul>
+  			<div class="tab-content">
+  					<div class="modal-body mb-1" id="modalMain">
+              <?php if ($erroremailinscriptionE != ""):
+
+                echo $erroremailinscriptionE;
+
+               else:
+
+                echo $erroremailinscriptioninvalideE;
+               endif;
+               ?>
+               <?php echo $errordatenaissance18 ?>
+               <?php echo $errordatenaissance100 ?>
+               <?php if ($erroremailinscriptionC != ""):
+
+                 echo $erroremailinscriptionC;
+
+                else:
+
+                 echo $erroremailinscriptioninvalideC;
+                endif;
+                ?>
+                <?php
+                  echo $error;
+                ?>
+
+  						<div style="display:none" id="entreprise">
+  							<div class="md-form form-sm mb-3">
+  						<div class="form-check form-check-inline">
+  							<input class="form-check-input" type="radio" name="radiobutton" value="option1" onchange="AfficherClient(this)"   >
+  							<label class="form-check-label" for="inlineRadio1">Client Privé</label>
+  						</div>
+  						<div class="form-check form-check-inline">
+  							<input class="form-check-input" type="radio" name="radiobutton"  id="radioentreprise" value="option2" onchange="AfficherEntreprise(this)"checked >
+  							<label class="form-check-label" for="inlineRadio2">Entreprise</label>
+  						</div>
+  						</div>
+  											<form  method="post" action ="login.php" onSubmit="return validation(this); ">
+  							 <div class="md-form form-sm mb-3">
+  								 <div class="input-group">
+  									 <input type="text" name="nom" class="form-control" placeholder="Insérez le nom de votre entreprise" required autofocus="" maxlength="20" >
+
+  								 </div>
+  							 </div>
+  							 <div class="md-form form-sm mb-3">
+  								 <div class="input-group">
+  									 <input type="email" name="email" class="form-control" placeholder="Insérez l'adresse mail de votre entreprise" required autofocus="" maxlength="25">
+
+  								 </div>
+  							 </div>
+  							 <div class="md-form form-sm mb-3">
+  								 <input type="password" name="mdp1" class="form-control" placeholder="Insérez votre mot de passe" required autofocus="" maxlength="30" minlength="6" >
+
+  							 </div>
+
+  							 <div class="md-form form-sm mb-3">
+  								 <input type="password" name="mdp2" class="form-control" placeholder="Insérez votre mot de passe une nouvelle fois" required autofocus="" maxlength="30" minlength="6">
+  							 </div>
+  							 <div class="md-form form-sm mb-3">
+  								 <input type="text" name="tel" class="form-control" placeholder="Insérez votre numéro de téléphone portable" required autofocus="" pattern="[0-9+]{10,18}">
+  								 </div>
+  								 <div class="md-form form-sm mb-3">
+  									 <input type="text" name="domaine" class="form-control" placeholder="Insérez le domaine de votre entreprise" required autofocus="" maxlength="50">
+  								 </div>
+
+  							 <div class="md-form form-sm mb-3">
+  								 <div class="input-group">
+  									 <span class="input-group-append">
+  										 <div class="input-group-text bg-transparent" >N° </div>
+  									 </span>
+  									 <input type="text" name="NRue" class="form-control" placeholder="de rue" required autofocus="" maxlength="6">
+  									 <span class="input-group-append">
+  										 <div class="input-group-text bg-transparent">Rue</div>
+  									 </span>
+  									 <input type="text" name="adresse" class="form-control" placeholder="l'adresse de votre entreprise" required autofocus="" maxlength="50">
+  								 </div>
+  							 </div>
+  							 <div class="md-form form-sm mb-3">
+  								 <div class="input-group">
+  									 <input type="tel" name="codepostal" class="form-control" placeholder="Code Postale" required autofocus=""maxlength="6" minlength="4">
+  									 <span class="input-group-append">
+
+  									 </span>
+  									 <input type="text" name="localite" class="form-control" placeholder="Localité" required autofocus=""pattern="[a-zA-ZÀ-ÿ]{1,15}" maxlength="15">
+  								 </div>
+  							 </div>
+  							 <div class="text-center form-sm mt-2">
+  								 <button class="btn btn-dark" type="submit" name="btnInscrireentreprise">inscrire votre entreprise</i></button>
+  							 </div>
+  							 </form>
+  						 </div>
+               <form method="post" action="login.php">
+                 <div class="modal fade" id="ModalMdp" tabindex="-1" role="dialog" aria-labelledby="MotDePasseOublier" aria-hidden="true">
+
+               						<div class="modal-dialog" role="document">
+               							<div class="modal-content">
+               								<div class="modal-header">
+               									<h5 class="modal-title" id="MotDePasseOublier">Mot de passe oublié?</h5>
+               									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               										<span aria-hidden="true">&times;</span>
+               									</button>
+               								</div>
+               								<div class="modal-body">
+                                 <div class="input-group">
+                                   <input type="email" name="emailnv" class="form-control" placeholder="Insérez votre adresse mail" required autofocus="">
+                                   <span class="input-group-append">
+                                     <div class="input-group-text bg-transparent">
+                                       <i class="fas fa-at" aria-hidden="true"></i></div>
+                                   </span>
+                                 </div>
+               								</div>
+               								<div class="modal-footer">
+               									<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+               									<button type="submit" class="btn btn-dark" name="btnNouveaumdp" >Envoyer</button>
+               								</div>
+               							</div>
+               						</div>
+               					</div>
+				</form>
+  					</div>
+  			</div>
+  		</div>
+  	</div>
+  </div>
+  			</div>
+  		</div>
+  	</main>
+    <script type="text/javascript">
+
+    	// Création de la div principale
+    	var modaleMain = document.getElementById('modalMain');
+    	modaleMain.innerHTML += '<div id="divFormulaire" class="modal-body mb-1"></div> ';
+    	var divFormulaire = document.getElementById('divFormulaire');
+    	// Création du formulaire
+    	var nvFormulaire = document.createElement('form');
+    	nvFormulaire.action = 'login.php';
+    	nvFormulaire.method = 'post';
+    	divFormulaire.appendChild(nvFormulaire);
+    	window.onload = creerLogin;
+    	function creerLogin (){
+    		var divinfoentreprise = document.getElementById('entreprise');
+    		divinfoentreprise.style.display = 'none';
+    			nvFormulaire.innerHTML = ''
+    	// Création des inputs
+    	// input email
+    	creerInputBootstrap('type="email"  id="EmailConnexion" placeholder="Veuillez entrer votre adresse mail " name="emailconnexion" value="" required> ','<span id=EmailConnexionVerif></span> <br> ');
+    	// input mot de passe
+    	creerInputBootstrap('type="password"  id="MdpConnexion" placeholder="Veuiller entrer votre mot de passe" name="motdepasseconnexion" value="" required > <br>','<span id=mdpConnexionVerif></span><br> ');
+    	// bouton valider
+    	nvFormulaire.innerHTML +=	'<div class="text-center mt-2">'+
+    														'<button class="btn btn-dark" type="submit" name="btnSeConnecter">Se connecter</button>'+
+    														'</div>'+
+    														'<div class="modal-footer">'+
+    															'<div class="options text-md-left mt-1">'+
+    																'<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalMdp">Mot de passe oublié ? </button>'+
+    															'</div>'+
+    														'</div>';
+                                document.getElementById('EmailConnexion').addEventListener("keyup",verificationEmail);
+    	}
+
+    	function verificationEmail(){
+    		var email = document.getElementById('EmailConnexion').value;
+    		var span = document.getElementById('EmailConnexionVerif');
+    		if (email != ""){
+    		patternEmail =  /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    		if (email.match(patternEmail)){
+    		span.style.color = 'green';
+    		span.innerHTML = "Adresse mail valide";
+    		}else{
+    		span.style.color = 'red';
+    		span.innerHTML = "Adresse mail invalide";
+    		}
+    	}else {
+    		span.style.color = '';
+    		span.innerHTML = "";
+    	}
+    	}
+    	function creerInputBootstrap (finInput,message){
+    		nvFormulaire.innerHTML += '<div class="md-form form-sm mb-4">'+
+    															'<input class="form-control"'+finInput+ message +
+    															'</div>';
+    }
+    document.getElementById('pageinscription').addEventListener("click",creerinscription);
+    document.getElementById('pageconnexion').addEventListener("click",creerLogin);
+
+    function creerinscription () {
+    	nvFormulaire.innerHTML =''
+    	nvFormulaire.innerHTML += '<div class="md-form form-sm mb-3">'+
+                            '<div class="form-check form-check-inline">'+
+                            '  <input class="form-check-input" type="radio" name="radiobutton" value="option1" onchange="AfficherClient(this)" checked >'+
+                              '<label class="form-check-label" for="inlineRadio1">Client Privé</label>'+
+                          '</div>'+
+                            '<div class="form-check form-check-inline">'+
+                            '  <input class="form-check-input" type="radio" name="radiobutton"  value="option2" onchange="AfficherEntreprise(this)" onsubmit="AfficherEntreprise(this)"   >'+
+                              '<label class="form-check-label" for="inlineRadio2">Entreprise</label>'+
+                            '</div>'+
+                            '</div>'
+    	creerInputBootstrap('type="text" name="nom"  placeholder="Insérez votre nom" required autofocus="" pattern="[a-zA-ZÀ-ÿ]{1,15}" maxlength="15"> ','');
+    	creerInputBootstrap('type="text" name="prenom"  placeholder="Insérez votre prénom" required autofocus="" pattern="[a-zA-ZÀ-ÿ]{1,15}" maxlength="15"> ','');
+      creerInputBootstrap('type="email"  id="EmailConnexion" placeholder="Veuillez entrer votre adresse mail " name="email" value="" required> ','<span id=EmailConnexionVerif></span> <br> ');
+    	creerInputBootstrap('type="password" name="mdp1"  placeholder="Insérez votre mot de passe" required autofocus="" maxlength="40" minlength="6">','');
+    	creerInputBootstrap('type="password" name="mdp2"  placeholder="Insérez votre mot de passe une nouvelle fois" required autofocus="" maxlength="40" minlength="6">','');
+    	nvFormulaire.innerHTML += '<div class="md-form form-sm mb-3">'+
+    					                  '<div class="input-group">'+
+    					                  '<span class="input-group-append">'+
+    					                  '<div class="input-group-text bg-transparent">Date de naissance</div>'+
+    					                  '</span>'+
+    					    							'	<input type="date" name="dateNaissance" class="form-control"  required autofocus="" maxlength="6">'+
+    					                  '</div>'+
+    					    							'</div>';
+
+    	creerInputBootstrap(' type="text" name="tel" class="form-control" placeholder="Insérez votre numéro de téléphone portable" required autofocus="" pattern="[0-9+]{10,18}">','');
+
+    	nvFormulaire.innerHTML +='<div class="md-form form-sm mb-3">'+
+        							'<div class="input-group">'+
+        									'<span class="input-group-append">'+
+        										'<div class="input-group-text bg-transparent">N°</div>'+
+        									'</span>'+
+        									'<input type="text" name="NRue" class="form-control" placeholder="de rue" required autofocus="" maxlength="6">'+
+        									'<span class="input-group-append">'+
+        										'<div class="input-group-text bg-transparent">Rue</div>'+
+        									'</span>'+
+        									'<input type="text" name="adresse" class="form-control" placeholder="votre adresse" required autofocus="" maxlength="50">'+
+        								'</div>'+
+        							'</div>'+
+        							'<div class="md-form form-sm mb-3">'+
+        								'<div class="input-group">'+
+        									'<input type="text"  name="codepostal" class="form-control" placeholder="Code Postale" required autofocus=""maxlength="6" minlength="4" >'+
+        									'<span class="input-group-append">'+
+        									'</span>'+
+        									'<input type="text" name="localite" class="form-control" placeholder="Localité" required autofocus="" pattern="[a-zA-ZÀ-ÿ]{1,15}" maxlength="15">'+
+        								'</div>'+
+        							'</div>'
+    	nvFormulaire.innerHTML +='  <div class="text-center form-sm mt-2">'+
+                        '<button class="btn btn-dark" type="submit" name="btnInscrireclient" >S\'inscrire</i></button>'+
+                      '</div>'
+                      document.getElementById('EmailConnexion').addEventListener("keyup",verificationEmail);
+
+    }
+
+    function AfficherEntreprise(x)
+    {
+    	var divinfoentreprise = document.getElementById('entreprise');
+
+    if (x.checked) {
+    		nvFormulaire.innerHTML = ''
+    		divinfoentreprise.style.display = 'initial';
+    		document.getElementById('radioentreprise').checked = true
+    }
+    }
+    function AfficherClient(x)
+    {
+    var divinfoentreprise = document.getElementById('entreprise');
+    if (x.checked) {
+    		divinfoentreprise.style.display = 'none';
+    		creerinscription()
+    }
+    }
+    function validation(f) {
+    		if (f.mdp1.value == '' || f.mdp2.value == '') {
+    			alert('Tous les champs ne sont pas remplis');
+    			f.mdp1.focus();
+    			return false;
+    			}
+    		else if (f.mdp1.value != f.mdp2.value) {
+    			alert('Ce ne sont pas les mêmes mots de passe!');
+    			f.mdp1.focus();
+    			return false;
+    			}
+    		else if (f.mdp1.value == f.mdp2.value) {
+    			return true;
+    			}
+    		else {
+    			f.mdp1.focus();
+    			return false;
+    			}
+    		}
+
+    </script>
 
-    				<!-- Nav tabs -->
-            <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
 
-
-              <?php if (isset($_POST['btnInscrireclient']) || isset($_POST['btnInscrireentreprise'])): ?>
-
-                <li class="nav-item">
-                  <a class="nav-link " data-toggle="tab" href="#panel1" role="tab"><i class="fas fa-user mr-1"></i>Connexion</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" data-toggle="tab" href="#panel2" role="tab"><i class="fas fa-user-plus mr-1"></i>Inscription</a>
-                </li>
-
-              <?php else: ?>
-
-              <li class="nav-item">
-    						<a class="nav-link active" data-toggle="tab" href="#panel1" role="tab"><i class="fas fa-user mr-1"></i>Connexion</a>
-    					</li>
-    					<li class="nav-item">
-    						<a class="nav-link" data-toggle="tab" href="#panel2" role="tab"><i class="fas fa-user-plus mr-1"></i>Inscription</a>
-    					</li>
-
-              <?php endif; ?>
-
-          </ul>
 
-    				<!-- Tab panels -->
-    				<div class="tab-content">
-    					<!--Panel Connexion-->
 
-              <?php if (isset($_POST['btnInscrireclient']) || isset($_POST['btnInscrireentreprise'])): ?>
 
-                  <div class="tab-pane fade " id="panel1" role="tabpanel">
-            <?php else: ?>
 
-            <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
 
-                <?php endif; ?>
 
-    						<!--Body-->
-    					<form method="post" action="login.php">
-    						<div class="modal-body mb-1">
-    							<div class="md-form form-sm mb-3">
-                    <?php
-                      echo $error;
-                    ?>
-    								<div class="input-group">
-    									<input class="form-control py-2 border-right-0 border"name="emailconnexion" type="email" placeholder="Email" required>
-    									<span class="input-group-append">
-    										<div class="input-group-text bg-transparent"><i class="fas fa-at"></i></div>
-    									</span>
-
-    								</div>
-    							</div>
-    							<div class="md-form form-sm mb-3">
-    								<div class="input-group">
-    									<input class="form-control py-2 border-right-0 border" name="motdepasseconnexion" type="password" placeholder="Mot de passe" required>
-    									<span class="input-group-append">
-    										<div class="input-group-text bg-transparent"><i class="fas fa-key"></i></div>
-    									</span>
-    								</div>
-    							</div>
-
-    							<div class="text-center mt-2">
-    								<button class="btn btn-dark" name="btnSeConnecter" type="submit">Se connecter</button>
-    							</div>
-    						</div>
-    					</form>
-    						<!--Footer-->
-    						<div class="modal-footer">
-    							<div class="options text-md-left mt-1">
-    								<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalMdp">Mot de passe oublié ? </button>
-    							</div>
-
-    						</div>
-    					</div>
-    					<!--/.Panel Connexion-->
-    					<!-- Modal -->
-
-
-
-    					<div class="modal fade" id="ModalMdp" tabindex="-1" role="dialog" aria-labelledby="MotDePasseOublier" aria-hidden="true">
-
-    						<div class="modal-dialog" role="document">
-    							<div class="modal-content">
-    								<div class="modal-header">
-    									<h5 class="modal-title" id="MotDePasseOublier">Mot de passe oublié?</h5>
-
-
-
-    									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-    										<span aria-hidden="true">&times;</span>
-    									</button>
-    								</div>
-
-
-                    <form method="post" action="login.php">
-    								<div class="modal-body">
-
-                      <div class="input-group">
-                        <input type="email" name="emailnv" class="form-control" placeholder="Insérez votre adresse mail" required autofocus="">
-                        <span class="input-group-append">
-                          <div class="input-group-text bg-transparent">
-                            <i class="fas fa-at" aria-hidden="true"></i></div>
-                        </span>
-                      </div>
-    								</div>
-
-    								<div class="modal-footer">
-    									<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-    									<button type="submit" class="btn btn-dark" name="btnNouveaumdp" >Envoyer</button>
-    								</div>
-                  </form>
-    							</div>
-    						</div>
-    					</div>
-
-
-              <?php if (isset($_POST['btnInscrireclient']) || isset($_POST['btnInscrireentreprise'])): ?>
-
-                <div class="tab-pane fade in show active" id="panel2" role="tabpanel">
-
-              <?php else: ?>
-    					<div class="tab-pane fade" id="panel2" role="tabpanel">
-
-
-              <?php endif; ?>
-
-
-    						<!--Body-->
-                    <div class="modal-body" >
-
-                    <?php if (isset($_POST['btnInscrireentreprise']) ): ?>
-
-                      <form  action="index.html" method="post">
-                      <div class="md-form form-sm mb-3">
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="radiobutton" value="option1" onchange="AfficherClient(this)"  >
-                          <label class="form-check-label" for="inlineRadio1">Client Privé</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="radiobutton"  value="option2" onchange="AfficherEntreprise(this)" onsubmit="AfficherEntreprise(this)" checked  >
-                          <label class="form-check-label" for="inlineRadio2">Entreprise</label>
-                        </div>
-                        </div>
-                        </form>
-
-
-                    <?php else: ?>
-
-                      <form  action="index.html" method="post">
-                    <div class="md-form form-sm mb-3">
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="radiobutton" value="option1" onchange="AfficherClient(this)" checked  >
-                        <label class="form-check-label" for="inlineRadio1">Client Privé</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="radiobutton"  value="option2" onchange="AfficherEntreprise(this)" >
-                        <label class="form-check-label" for="inlineRadio2">Entreprise</label>
-                      </div>
-                      </div>
-                        </form>
-
-                    <?php endif; ?>
-
-                    <?php if (isset($_POST['btnInscrireentreprise']) ): ?>
-
-                      <div id="client" style="display:none">
-                        <form  action="login.php" method="post" onSubmit="return validation(this)">
-                  <?php else: ?>
-
-                    <div id="client">
-                      <form  action="login.php" method="post" onSubmit="return validation(this)">
-
-                      <?php endif; ?>
-
-    <?php if ($erroremailinscriptionC != ""):
-
-      echo $erroremailinscriptionC;
-
-     else:
-
-      echo $erroremailinscriptioninvalideC;
-     endif;
-     ?>
-
-    							<div class="md-form form-sm mb-3">
-
-    								<div class="input-group">
-    									<input type="text" name="nom" class="form-control" placeholder="Insérez votre nom" required autofocus="" pattern="[a-zA-ZÀ-ÿ]{1,15}" maxlength="15">
-    									<input type="text" name="prenom" class="form-control" placeholder="Insérez votre prénom" required autofocus="" pattern="[a-zA-ZÀ-ÿ]{1,15}" maxlength="15">
-    								</div>
-    							</div>
-    							<div class="md-form form-sm mb-3">
-                    <div class="input-group">
-                      <input type="email" name="email" class="form-control" placeholder="Insérez votre adresse mail" required autofocus="" maxlength="30" >
-
-                    </div>
-
-
-    							</div>
-    							<div class="md-form form-sm mb-3">
-    								<input type="password" name="mdp1" class="form-control" placeholder="Insérez votre mot de passe" required autofocus="" maxlength="40" minlength="6">
-
-    							</div>
-    							<div class="md-form form-sm mb-3">
-    								<input type="password" name="mdp2" class="form-control" placeholder="Insérez votre mot de passe une nouvelle fois" required autofocus="" maxlength="40" minlength="6">
-    							</div>
-    							<div class="md-form form-sm mb-3">
-                    	<div class="input-group">
-                    <span class="input-group-append">
-                      <div class="input-group-text bg-transparent">Date de naissance</div>
-                    </span>
-    								<input type="date" name="dateNaissance" class="form-control"  required autofocus="" maxlength="6">
-                    </div>
-    							</div>
-
-                  <?php echo $errordatenaissance18 ?>
-                  <?php echo $errordatenaissance100 ?>
-    							<div class="md-form form-sm mb-3">
-    								<input type="text" name="tel" class="form-control" placeholder="Insérez votre numéro de téléphone portable" required autofocus="" pattern="[0-9+]{10,18}">
-    							</div>
-    							<div class="md-form form-sm mb-3">
-    								<div class="input-group">
-    									<span class="input-group-append">
-    										<div class="input-group-text bg-transparent">N°</div>
-    									</span>
-    									<input type="text" name="NRue" class="form-control" placeholder="de rue" required autofocus="" maxlength="6">
-    									<span class="input-group-append">
-    										<div class="input-group-text bg-transparent">Rue</div>
-    									</span>
-    									<input type="text" name="adresse" class="form-control" placeholder="votre adresse" required autofocus="" maxlength="50">
-    								</div>
-    							</div>
-    							<div class="md-form form-sm mb-3">
-    								<div class="input-group">
-    									<input type="tel"  name="codepostal" class="form-control" placeholder="Code Postale" required autofocus=""maxlength="6" minlength="4" >
-    									<span class="input-group-append">
-
-    									</span>
-    									<input type="text" name="localite" class="form-control" placeholder="Localité" required autofocus="" pattern="[a-zA-ZÀ-ÿ]{1,15}" maxlength="15">
-    								</div>
-    							</div>
-                  <div class="text-center form-sm mt-2">
-                    <button class="btn btn-dark" type="submit" name="btnInscrireclient" >S'inscrire</i></button>
-                  </div>
-            </form>
-
-        </div>
-
-        <?php if (isset($_POST['btnInscrireentreprise']) ): ?>
-
-          <div id="entreprise">
-
-                <form  method="post" action ="login.php" onSubmit=" return validation(this); ">
-      <?php else: ?>
-
-        <div style="display:none" id="entreprise">
-                    <form  method="post" action ="login.php" onSubmit="return validation(this); ">
-          <?php endif; ?>
-            <?php if ($erroremailinscriptionE != ""):
-
-              echo $erroremailinscriptionE;
-
-             else:
-
-              echo $erroremailinscriptioninvalideE;
-             endif;
-             ?>
-
-    							<div class="md-form form-sm mb-3">
-    								<div class="input-group">
-    									<input type="text" name="nom" class="form-control" placeholder="Insérez le nom de votre entreprise" required autofocus="" maxlength="20" >
-
-    								</div>
-    							</div>
-    							<div class="md-form form-sm mb-3">
-    								<div class="input-group">
-    									<input type="email" name="email" class="form-control" placeholder="Insérez l'adresse mail de votre entreprise" required autofocus="" maxlength="25">
-
-    								</div>
-    							</div>
-    							<div class="md-form form-sm mb-3">
-    								<input type="password" name="mdp1" class="form-control" placeholder="Insérez votre mot de passe" required autofocus="" maxlength="30" minlength="6" >
-
-    							</div>
-
-    							<div class="md-form form-sm mb-3">
-    								<input type="password" name="mdp2" class="form-control" placeholder="Insérez votre mot de passe une nouvelle fois" required autofocus="" maxlength="30" minlength="6">
-    							</div>
-    							<div class="md-form form-sm mb-3">
-    								<input type="text" name="tel" class="form-control" placeholder="Insérez votre numéro de téléphone portable" required autofocus="" pattern="[0-9+]{10,18}">
-                    </div>
-                    <div class="md-form form-sm mb-3">
-                      <input type="text" name="domaine" class="form-control" placeholder="Insérez le domaine de votre entreprise" required autofocus="" maxlength="50">
-                    </div>
-
-    							<div class="md-form form-sm mb-3">
-    								<div class="input-group">
-    									<span class="input-group-append">
-    										<div class="input-group-text bg-transparent" >N° </div>
-    									</span>
-    									<input type="text" name="NRue" class="form-control" placeholder="de rue" required autofocus="" maxlength="6">
-    									<span class="input-group-append">
-    										<div class="input-group-text bg-transparent">Rue</div>
-    									</span>
-    									<input type="text" name="adresse" class="form-control" placeholder="l'adresse de votre entreprise" required autofocus="" maxlength="50">
-    								</div>
-    							</div>
-    							<div class="md-form form-sm mb-3">
-    								<div class="input-group">
-    									<input type="tel" name="codepostal" class="form-control" placeholder="Code Postale" required autofocus=""maxlength="6" minlength="4">
-    									<span class="input-group-append">
-
-    									</span>
-    									<input type="text" name="localite" class="form-control" placeholder="Localité" required autofocus=""pattern="[a-zA-ZÀ-ÿ]{1,15}" maxlength="15">
-    								</div>
-    							</div>
-                  <div class="text-center form-sm mt-2">
-                    <button class="btn btn-dark" type="submit" name="btnInscrireentreprise">inscrire votre entreprise</i></button>
-                  </div>
-                  </form>
-                </div>
-    							</div>
-    					</div>
-    					<!--/.Panel Inscription-->
-    				</div>
-    			</div>
-    		</div>
-    		<!--/.Content-->
-    	</div>
-    </div><!-- /.row -->
-    </div>
-    </main><!-- /.container -->
-    </div>
-    </div>
-    </div>
-    </div>
     <!-- Footer Links -->
     <footer class="page-footer font-small">
 
