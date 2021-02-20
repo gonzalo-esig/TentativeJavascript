@@ -1,0 +1,60 @@
+    xmlhttp.onreadystatechange = () => {
+        if(xmlhttp.readyState == 4){
+            if(xmlhttp.status == 200){
+                let evenements = JSON.parse(xmlhttp.responseText)
+
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+
+         expandRows: true,
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'timeGridWeek,timeGridDay'
+
+      },
+      buttonText:{
+        today : 'Aujourd\'hui',
+        week : 'Semaines',
+        day: 'Jours',
+      },
+      initialView: 'timeGridWeek',
+      hiddenDays: [ 0, 6 ],
+      navLinks: true, // can click day/week names to navigate views
+      selectable: true,
+      selectMirror: true,
+      allDaySlot: false,
+      slotMinTime: "08:00:00",
+      slotMaxTime: "18:00:00",
+      slotDuration: "01:00:00",
+      locale: 'fr',
+
+
+
+      select: function(arg) {
+        var title = prompt('Event Title:');
+        if (title) {
+          calendar.addEvent({
+            title: title,
+            start: arg.start,
+            end: arg.end,
+            allDay: arg.allDay
+          })
+        }
+        calendar.unselect()
+      },
+      eventClick: function(arg) {
+        if (confirm('Are you sure you want to delete this event?')) {
+          arg.event.remove()
+        }
+      },
+      editable: true,
+      dayMaxEvents: true, // allow "more" link when too many events
+      events: [
+
+      ]
+    });
+
+    calendar.render();
+  });
+}
