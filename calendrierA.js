@@ -2,9 +2,6 @@
 
 
 window.onload = () => {
-
-
-
     let xmlhttp = new XMLHttpRequest()
     var d = new Date();
     var n = d.getDay();
@@ -12,9 +9,6 @@ window.onload = () => {
         if(xmlhttp.readyState == 4){
             if(xmlhttp.status == 200){
                 let evenements = JSON.parse(xmlhttp.responseText);
-
-
-
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -57,30 +51,27 @@ window.onload = () => {
                 let req = new XMLHttpRequest()
                 let formatted_datestart = arg.start.getFullYear() + "-" + appendLeadingZeroes(arg.start.getMonth() + 1) + "-" + appendLeadingZeroes(arg.start.getDate()) + " " + appendLeadingZeroes(arg.start.getHours()) + ":" + appendLeadingZeroes(arg.start.getMinutes()) + ":" + appendLeadingZeroes(arg.start.getSeconds())
                 let formatted_dateend = arg.end.getFullYear() + "-" + appendLeadingZeroes(arg.end.getMonth() + 1) + "-" + appendLeadingZeroes(arg.end.getDate()) + " " + appendLeadingZeroes(arg.end.getHours()) + ":" + appendLeadingZeroes(arg.end.getMinutes()) + ":" + appendLeadingZeroes(arg.end.getSeconds())
-                let test = {
-
+                let evenement = {
                   title: title,
                   start: arg.start,
                   end: arg.end,
                   allDay: arg.allDay
                 }
-
-
                 let reservation = {
-
                   ID_ADMIN: 1 ,
                   RES_DATEDEBUT:formatted_datestart,
                   RES_DATEFIN:formatted_dateend,
                   RES_MOTIF:title,
-
-
                 }
-
-
+                req.onreadystatechange = () => {
+                  if(req.readyState == 4){
+                    if(req.status == 201){
+                      console.log(req);
+                      calendar.addEvent(evenement)
+                    }}}
                 req.open("POST","api-rest/reservation/creerA.php",true);
                 req.send(JSON.stringify(reservation))
-                console.log(req);
-                calendar.addEvent(test)
+
 
               }
               calendar.unselect()
@@ -88,18 +79,19 @@ window.onload = () => {
 
             eventClick: function(arg) {
            if (confirm('Voulez vous supprimer cette réservation?')) {
-
-
              let reqdelete = new XMLHttpRequest()
-
              let reservationdel={
                ID_RESERVATION: arg.event.id,
-
              }
+             reqdelete.onreadystatechange = () => {
+               if(reqdelete.readyState == 4){
+                 if(reqdelete.status == 200){
+                   console.log(reqdelete);
+                   arg.event.remove()
+                 }}}
              reqdelete.open("DELETE","api-rest/reservation/supprimer.php",true);
              reqdelete.send(JSON.stringify(reservationdel))
-             console.log(reqdelete);
-             arg.event.remove()
+
            }
          },
 
