@@ -48,7 +48,8 @@
                 <h6><?php echo   $emailespace ?></h6>
                 <h6><?php echo $datenaissancespacef ?></h6>
                 <h6><?php echo $telespace ?></h6>
-                <h6><?php echo     $adresseespace ." ". $cpespace ." ". $localiteespace ?></h6>
+                <h6><?php echo $adresseespace ?></h6>
+				<h6><?php echo  $cpespace ." ". $localiteespace ?></h6>
 
               <?php else: ?>
 
@@ -92,6 +93,10 @@
               $adressepostespace =$_POST["adresseES"];
               $codepostalpostespace = $_POST["zipCodeES"];
               $localitepostespace = $_POST["localiteES"];
+			  
+				if (!preg_match('/[#$%^&*()+=\-\[\]\';,.\/{}|":<>?~\\\\]/', $adressepostespace)){
+				
+				
               if (filter_var($emailpostespace,FILTER_VALIDATE_EMAIL)) {
               $user = getOneUser($emailpostespace);
               if (!empty($user)) {
@@ -134,7 +139,13 @@
             }else {
               $errorECexist = "<div class='alert alert-danger' role='alert'> Cette adresse mail n'est pas valide !</div>";
             }
-            } else {
+            }else {
+				
+				echo "<div class='alert alert-danger' role='alert'> cette adresse n'est pas valide !</div>";
+			}
+			
+			
+			}else {
               $idclientpostespace = $_SESSION['ID_PERSONNEMORALE'];
               $nompostespace = $_POST["nomES"];
               $prenompostespace = $_POST["prenomES"];
@@ -187,7 +198,7 @@
               $errorECexist = "<div class='alert alert-danger' role='alert'> Cette adresse mail n'est pas valide !</div>";
             }
             }
-          }
+			} 
           if (isset($_POST['btnValiderEspaceMDP'])) {
             if ($_SESSION['EST_CLIENT'] == 1) {
               $nvmdpE1 = $_POST['nvmdpE1'];
@@ -260,7 +271,7 @@
                 									<span class="input-group-append">
                 										<div class="input-group-text bg-transparent">Adresse</div>
                 									</span>
-                									<input type="text" name="adresseES" class="form-control" placeholder="votre adresse" required autofocus="" value='<?php echo $adresseespace; ?>'maxlength="50">
+                									<input type="text" name="adresseES" class="form-control" placeholder="votre adresse" required autofocus="" value='<?php echo $adresseespace; ?>' pattern="[a-zA-ZÀ-ÿ ]{1,50}">
                 								</div>
                 							</div>
                 							<div class="md-form form-sm mb-3">

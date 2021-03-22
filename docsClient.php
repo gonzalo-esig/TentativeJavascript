@@ -245,6 +245,24 @@ if(!empty($_GET['amp;c'])){
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+			
+			   <h4><?php echo  $user['PER_NOM']  ?></h4>
+                <h5><?php echo   $user['PER_PRENOM'] ?></h5>
+                <h6><?php echo   $user['PER_EMAIL'] ?></h6>
+                <h6><?php echo $user['PER_DATEDENAISSANCE'] ?></h6>
+                <h6><?php echo $user['PER_TELEPHONE'] ?></h6>
+                <h6><?php echo $user['PER_ADRESSE'] ?></h6>
+				<h6><?php echo  $user['PER_CODEPOSTAL'] ." ". $user['PER_LOCALITE'] ?></h6>
+			
+			
+			 <div class="btn-group ml-3 mr-2 mt-4" role="group" aria-label="Second group">
+						<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#MdfClient" style="background-color : #26479e;">Modifier  informations </button>
+					  </div>
+					  
+			<div class="modal fade" id="MdfClient" tabindex="-1" role="dialog" aria-labelledby="MotDePasseOublier" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+			
             <div class="modal-body">
 
           <div class="md-form form-sm mb-3">
@@ -290,9 +308,13 @@ if(!empty($_GET['amp;c'])){
               <button type="reset" class="btn btn-secondary" data-dismiss="modal" >Fermer</button>
               <button type="submit" class="btn btn-dark" name="btnValiderEspaceClientAD">Envoyer</button>
             </div>
+			    </div>
+        </div>
           </div>
         </div>
       </div>
+	      </div>
+   
     </form>
     <?php else: ?>
       <?php echo $errorEC ?>
