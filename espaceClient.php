@@ -94,9 +94,7 @@
               $codepostalpostespace = $_POST["zipCodeES"];
               $localitepostespace = $_POST["localiteES"];
 			  
-				if (!preg_match('/[#$%^&*()+=\-\[\]\';,.\/{}|":<>?~\\\\]/', $adressepostespace)){
-				
-				
+				if (!preg_match('/[$%^()+=\-\[\];\/{}|:<>?~\\\\]/', $adressepostespace)){
               if (filter_var($emailpostespace,FILTER_VALIDATE_EMAIL)) {
               $user = getOneUser($emailpostespace);
               if (!empty($user)) {
@@ -271,7 +269,7 @@
                 									<span class="input-group-append">
                 										<div class="input-group-text bg-transparent">Adresse</div>
                 									</span>
-                									<input type="text" name="adresseES" class="form-control" placeholder="votre adresse" required autofocus="" value='<?php echo $adresseespace; ?>' pattern="[a-zA-ZÀ-ÿ ]{1,50}">
+                									<input type="text" name="adresseES" class="form-control" placeholder="votre adresse" required autofocus="" value='<?php echo $adresseespace; ?>' >
                 								</div>
                 							</div>
                 							<div class="md-form form-sm mb-3">
